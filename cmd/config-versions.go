@@ -602,3 +602,27 @@ type serverConfigV23 struct {
 	// Notification queue configuration.
 	Notify notifier `json:"notify"`
 }
+
+// serverConfigV24 is just like version '23', we had to revert
+// the changes which were made in 6fb06045028b7a57c37c60a612c8e50735279ab4
+//
+// IMPORTANT NOTE: When updating this struct make sure that
+// serverConfig.ConfigDiff() is updated as necessary.
+type serverConfigV24 struct {
+	Version string `json:"version"`
+
+	// S3 API configuration.
+	Credential auth.Credentials `json:"credential"`
+	Region     string           `json:"region"`
+	Browser    BrowserFlag      `json:"browser"`
+	Domain     string           `json:"domain"`
+
+	// Storage class configuration
+	StorageClass storageClassConfig `json:"storageclass"`
+
+	// Cache configuration
+	Cache CacheConfig `json:"cache"`
+
+	// Notification queue configuration.
+	Notify notifier `json:"notify"`
+}
